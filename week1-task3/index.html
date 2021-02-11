@@ -8,12 +8,12 @@
 <body>
 
     <form>
-        <input type="radio" id="est" name="timezone" value="est">Eastern Standard Time<br>
-        <input type="radio" id="cst" name="timezone" value="cst">Central Standard Time<br>
-        <input type="radio" id="mst" name="timezone" value="mst">Mountain Standard Time<br>
-        <input type="radio" id="pst" name="timezone" value="pst">Pacific Standard Time<br>
-        <input type="radio" id="ast" name="timezone" value="ast">Alaska Standard Time<br>
-        <input type="radio" id="hast" name="timezone" value="hast">Hawaii-Aleutian Standard Time<br>
+        <input type="radio" id="EST" name="timezone" value="EST">Eastern Standard Time<br>
+        <input type="radio" id="CST" name="timezone" value="CST">Central Standard Time<br>
+        <input type="radio" id="MST" name="timezone" value="MST">Mountain Standard Time<br>
+        <input type="radio" id="PST" name="timezone" value="PST">Pacific Standard Time<br>
+        <input type="radio" id="AST" name="timezone" value="AST">Alaska Standard Time<br>
+        <input type="radio" id="HAST" name="timezone" value="HAST">Hawaii-Aleutian Standard Time<br>
         <br>
         <button type="button" value="Submit" onclick="ValidateForm()">Submit</button>
     </form>
@@ -21,6 +21,10 @@
     <br>
     
     <div id="result"></div>
+
+    <br>
+
+    <div id="clock"></div>
 
     <script type="text/javascript">
         function ValidateForm(){
@@ -34,11 +38,31 @@
             document.getElementById("result").innerHTML = radioButtonValue;
         }
 
-        function pirulo(){
-            var radioButtons = document.getElementsByName("timezone");
-            var radioButtonValue = radioButtons[0].value;
-            document.getElementById("result").innerHTML = radioButtonValue;
+        function Time(){
+            var day = new Date();
+            var currentHour = day.getHours();
+            var currentMinute = day.getMinutes();
+            var currentSecond = day.getSeconds();
+            var currentSession = 0;
+            
+            if (currentHour <= 12){
+                currentSession = "AM"
+            } else {
+                currentSession = "PM"
+            }
+
+            currentHour = currentHour % 12;
+            
+            var currentTime = currentHour + ":" + currentMinute + ":" + currentSecond + " " + currentSession;
+            
+            setTimeout(Time, 1000);
+
+            document.getElementById("clock").innerHTML = currentTime;
+
         }
+
+        Time();
+
     </script>
 
 </body>
