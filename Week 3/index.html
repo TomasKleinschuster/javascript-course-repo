@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <title>Title!</title>
+</head>
+<body>
+
+    <div id="radiotimezone" class="radiotimezone">  
+        <form>
+            <p>Select TimeZone:</p>
+            <input type="radio" id="EST" name="timezone" value="EST">Eastern Standard Time<br>
+            <input type="radio" id="CST" name="timezone" value="CST">Central Standard Time<br>
+            <input type="radio" id="MST" name="timezone" value="MST">Mountain Standard Time<br>
+            <input type="radio" id="PST" name="timezone" value="PST">Pacific Standard Time<br>
+            <input type="radio" id="AST" name="timezone" value="AST">Alaska Standard Time<br>
+            <input type="radio" id="HAST" name="timezone" value="HAST">Hawaii-Aleutian Standard Time<br>
+            <br>
+            <button type="button" value="Submit" onclick="ValidateForm()">Submit</button>
+        </form>
+    </div>  
+    
+    <br>
+    
+    <div id="result" class="result">UTC</div>
+
+    <br>
+
+    <div id="clock" class="clock"></div>
+
+</body>
+</html>
