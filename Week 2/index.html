@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Title!</title>
+</head>
+<body>
+
+    <form>
+        <input type="radio" id="EST" name="timezone" value="EST">Eastern Standard Time<br>
+        <input type="radio" id="CST" name="timezone" value="CST">Central Standard Time<br>
+        <input type="radio" id="MST" name="timezone" value="MST">Mountain Standard Time<br>
+        <input type="radio" id="PST" name="timezone" value="PST">Pacific Standard Time<br>
+        <input type="radio" id="AST" name="timezone" value="AST">Alaska Standard Time<br>
+        <input type="radio" id="HAST" name="timezone" value="HAST">Hawaii-Aleutian Standard Time<br>
+        <br>
+        <button type="button" value="Submit" onclick="ValidateForm()">Submit</button>
+    </form>
+    
+    <br>
+    
+    <div id="result"></div>
+
+    <br>
+
+    <div id="clock"></div>
+
+    <script type="text/javascript">
+        
+        var manyHours = 0;
+        
+        function ValidateForm(){
+            var radioButtons = document.getElementsByName("timezone");
+            var radioButtonValue = radioButtons[0].value;
+            for (var i = 0; i < radioButtons.length; i++){
+                if (radioButtons[i].checked == true){
+                    radioButtonValue = radioButtons[i].value;
+                }
+            }
+
+            switch(radioButtonValue){
+                case "HAST":
+                    manyHours = -7;
+                    break;
+                case "AST":
+                    manyHours = -6;
+                    break;
+                case "PST":
+                    manyHours = -5;
+                    break;
+                case "MST":
+                    manyHours = -4;
+                    break;
+                case "CST":
+                    manyHours = -3;
+                    break;
+                case "EST":
+                    manyHours = -2;
+                    break;
+                default:
+                    manyHours = 0;
+            }
+
+            document.getElementById("result").innerHTML = radioButtonValue;
+        }
+
+        function Time(){
+            var day = new Date();
+            var currentHour = day.getHours() + manyHours;
+            var currentMinute = day.getMinutes();
+            var currentSecond = day.getSeconds();
+            var currentSession = 0;
+            
+            if (currentHour <= 12){
+                currentSession = "AM"
+            } else {
+                currentSession = "PM"
+            }
+
+            currentHour = currentHour % 12;
+            
+            var currentTime = currentHour + ":" + currentMinute + ":" + currentSecond + " " + currentSession;
+            
+            setTimeout(Time, 10);
+
+            document.getElementById("clock").innerHTML = currentTime;
+
+        }
+
+        Time();
+
+        
+    </script>
+
+</body>
+</html>
